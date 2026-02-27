@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TableStatus {
+  OPEN
+  CLOSED
+}
+
+enum PlayerStatus {
+  ACTIVE
+  LEFT
+}
+
+enum TxType {
+  BUY_IN
+  REBUY
+  CASH_OUT
+  ADJUSTMENT
+}
+
+model User {
+  id           String  @id @default(uuid()) @db.Uuid
+  email        String  @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  tables       Table[]
+}
+
+model Table {
+  id          String       @id @default(uuid()) @db.Uuid
+  ownerUserId String       @db.Uuid
+  name        String
+  blinds      String
+  currency    String
+  status      TableStatus  @default(OPEN)
+  createdAt   DateTime     @default(now())
+  closedAt    DateTime?
+
+  owner       User         @relation(fields: [ownerUserId], references: [id], onDelete: Restrict)
+  players     TablePlayer[]
+  transactions Transaction[]
+
+  @@index([ownerUserId])
+}
+
+model TablePlayer {
+  id        String       @id @default(uuid()) @db.Uuid
+  tableId   String       @db.Uuid
+  name      String
+  status    PlayerStatus @default(ACTIVE)
+  createdAt DateTime     @default(now())
+
+  table        Table          @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@index([tableId])
+}
+
+model Transaction {
+  id            String   @id @default(uuid()) @db.Uuid
+  tableId       String   @db.Uuid
+  tablePlayerId String   @db.Uuid
+  type          TxType
+  amountCents   Int
+  createdAt     DateTime @default(now())
+  note          String?
+
+  table       Table       @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  tablePlayer TablePlayer @relation(fields: [tablePlayerId], references: [id], onDelete: Restrict)
+
+  @@index([tableId])
+  @@index([tablePlayerId])
+}

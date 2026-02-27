@@ -1,21 +1,10 @@
-import 'dotenv/config';
-import Fastify from 'fastify';
-import cors from '@fastify/cors';
-
-const app = Fastify({ logger: true });
-const port = Number(process.env.PORT ?? 3333);
-
-app.get('/', async () => {
-  return { message: 'hello world' };
-});
+import { env } from './config/env';
+import { app } from './app';
 
 const start = async () => {
   try {
-    await app.register(cors, {
-      origin: true,
-    });
-    await app.listen({ port, host: '0.0.0.0' });
-    app.log.info(`HTTP server running on port ${port}`);
+    await app.listen({ port: env.PORT, host: '0.0.0.0' });
+    app.log.info(`HTTP server running on port ${env.PORT}`);
   } catch (error) {
     app.log.error(error);
     process.exit(1);
