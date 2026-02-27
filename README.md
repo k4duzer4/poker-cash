@@ -1,3 +1,5 @@
+# Projeto referente à cadeira de Gerenciamento de Projetos (UEPB)
+
 # Poker Cash - Guia de execução (Backend + Frontend + Supabase)
 
 Este guia mostra o passo a passo para rodar o sistema localmente, incluindo a configuração do banco de dados no Supabase.
