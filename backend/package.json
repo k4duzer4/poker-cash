@@ -14,7 +14,7 @@
   "type": "commonjs",
   "dependencies": {
     "@fastify/cors": "^11.2.0",
-    "@prisma/client": "^7.4.1",
+    "@prisma/client": "^6.16.3",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
     "fastify": "^5.7.4",
@@ -25,7 +25,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.3.2",
-    "prisma": "^7.4.1",
+    "prisma": "^6.16.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
