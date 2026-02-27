@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { LoginPage } from './pages/LoginPage'
-import { RegisterPage } from './pages/RegisterPage'
+import { LoginPage } from './pages/LoginPage.tsx'
+import { RegisterPage } from './pages/RegisterPage.tsx'
 
 function App() {
   return (
