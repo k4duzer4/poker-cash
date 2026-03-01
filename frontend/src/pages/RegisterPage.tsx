@@ -19,8 +19,12 @@ export const RegisterPage = () => {
     setLoading(true)
 
     try {
-      await registerRequest({ email, password })
-      setSuccess('Conta criada com sucesso. Redirecionando para login...')
+      const response = await registerRequest({ email, password })
+      setSuccess(
+        response.mode === 'demo'
+          ? 'Cadastro realizado com sucesso (modo demonstração). Redirecionando para login...'
+          : 'Conta criada com sucesso. Redirecionando para login...',
+      )
 
       setTimeout(() => {
         navigate('/login')

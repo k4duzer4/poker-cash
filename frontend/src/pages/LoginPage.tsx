@@ -20,7 +20,11 @@ export const LoginPage = () => {
     try {
       const response = await loginRequest({ email, password })
       localStorage.setItem('token', response.token)
-      setSuccess('Login realizado com sucesso.')
+      setSuccess(
+        response.mode === 'demo'
+          ? 'Login realizado com sucesso (modo demonstração).'
+          : 'Login realizado com sucesso.',
+      )
     } catch (requestError) {
       const message =
         requestError instanceof Error
