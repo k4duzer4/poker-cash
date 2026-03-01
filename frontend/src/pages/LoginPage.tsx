@@ -1,10 +1,13 @@
 import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { appName } from '../services/api'
 import { loginRequest } from '../services/auth'
+import { useAuth } from '../store/auth'
 
 export const LoginPage = () => {
+  const navigate = useNavigate()
+  const { signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -19,12 +22,16 @@ export const LoginPage = () => {
 
     try {
       const response = await loginRequest({ email, password })
-      localStorage.setItem('token', response.token)
+      signIn({ token: response.token, email })
       setSuccess(
         response.mode === 'demo'
           ? 'Login realizado com sucesso (modo demonstração).'
           : 'Login realizado com sucesso.',
       )
+
+      setTimeout(() => {
+        navigate('/')
+      }, 600)
     } catch (requestError) {
       const message =
         requestError instanceof Error

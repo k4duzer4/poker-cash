@@ -1,7 +1,25 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { appName } from '../services/api'
+import { useAuth } from '../store/auth'
 
 export const LandingPage = () => {
+  const { user, isAuthenticated, signOut } = useAuth()
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+
+  const handleOpenLogoutModal = () => {
+    setIsLogoutModalOpen(true)
+  }
+
+  const handleCloseLogoutModal = () => {
+    setIsLogoutModalOpen(false)
+  }
+
+  const handleConfirmLogout = () => {
+    signOut()
+    setIsLogoutModalOpen(false)
+  }
+
   return (
     <main className="landing">
       <div className="animated-bg"></div>
@@ -13,12 +31,29 @@ export const LandingPage = () => {
           </div>
 
           <div className="landing-actions">
-            <Link to="/login" className="btn btn-outline-secondary">
-              Login
-            </Link>
-            <Link to="/register" className="btn btn-primary">
-              Criar Conta
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <span className="btn btn-outline-secondary" role="status" aria-label="Perfil do usuário">
+                  Perfil{user?.email ? ` (${user.email})` : ''}
+                </span>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={handleOpenLogoutModal}
+                >
+                  Sair
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-outline-secondary">
+                  Login
+                </Link>
+                <Link to="/register" className="btn btn-primary">
+                  Criar Conta
+                </Link>
+              </>
+            )}
           </div>
         </header>
 
@@ -30,12 +65,20 @@ export const LandingPage = () => {
               O Poker Cash automatiza o controle de buy-ins, lucros e saldos em tempo real.
             </p>
             <div className="hero-cta-group">
-              <Link to="/register" className="btn btn-primary btn-lg">
-                Criar Conta Gratuitamente
-              </Link>
-              <Link to="/login" className="btn btn-outline-secondary btn-lg">
-                Já tenho conta
-              </Link>
+              {isAuthenticated ? (
+                <Link to="/" className="btn btn-primary btn-lg">
+                  Gerenciar mesa
+                </Link>
+              ) : (
+                <>
+                  <Link to="/register" className="btn btn-primary btn-lg">
+                    Criar Conta Gratuitamente
+                  </Link>
+                  <Link to="/login" className="btn btn-outline-secondary btn-lg">
+                    Já tenho conta
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -125,15 +168,48 @@ export const LandingPage = () => {
         <section className="landing-cta">
           <h2>Pronto para organizar sua mesa?</h2>
           <p>Comece em minutos e tenha clareza total dos resultados da sua mesa.</p>
-          <Link to="/register" className="btn btn-primary btn-lg">
-            Começar Agora
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/" className="btn btn-primary btn-lg">
+              Gerenciar mesa
+            </Link>
+          ) : (
+            <Link to="/register" className="btn btn-primary btn-lg">
+              Começar Agora
+            </Link>
+          )}
         </section>
 
         <footer className="landing-footer">
           © 2026 {appName}. Sistema de Gestão para Mesas de Poker.
         </footer>
       </div>
+
+      {isLogoutModalOpen && (
+        <>
+          <div className="modal fade show" style={{ display: 'block' }} tabIndex={-1} role="dialog" aria-modal="true">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Confirmar saída</h5>
+                  <button type="button" className="btn-close" aria-label="Close" onClick={handleCloseLogoutModal}></button>
+                </div>
+                <div className="modal-body">
+                  <p className="mb-0">Deseja realmente sair da sua conta?</p>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-outline-secondary" onClick={handleCloseLogoutModal}>
+                    Cancelar
+                  </button>
+                  <button type="button" className="btn btn-primary" onClick={handleConfirmLogout}>
+                    Sair
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="modal-backdrop fade show"></div>
+        </>
+      )}
     </main>
   )
 }
