@@ -26,7 +26,10 @@ export const RegisterPage = () => {
         navigate('/login')
       }, 1200)
     } catch (requestError) {
-      const message = requestError instanceof Error ? requestError.message : 'Falha ao registrar usuário.'
+      const message =
+        requestError instanceof Error
+          ? requestError.message
+          : 'Falha ao registrar usuário.'
       setError(message)
     } finally {
       setLoading(false)
@@ -34,56 +37,58 @@ export const RegisterPage = () => {
   }
 
   return (
-    <main className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-6 col-lg-5">
-          <div className="card shadow-sm">
-            <div className="card-body p-4">
-              <h1 className="h4 mb-3">{appName} - Register</h1>
+    <main className="container">
+      <div className="login-wrapper">
+        <div className="card p-4">
+          <h1 className="h4 mb-4 text-center">
+            {appName} - Criar Conta
+          </h1>
 
-              {error && <div className="alert alert-danger py-2">{error}</div>}
-              {success && <div className="alert alert-success py-2">{success}</div>}
+          {error && <div className="alert alert-danger py-2">{error}</div>}
+          {success && <div className="alert alert-success py-2">{success}</div>}
 
-              <form onSubmit={handleSubmit} className="d-grid gap-3">
-                <div>
-                  <label htmlFor="email" className="form-label">
-                    E-mail
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="form-control"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="password" className="form-label">
-                    Senha
-                  </label>
-                  <input
-                    id="password"
-                    type="password"
-                    className="form-control"
-                    minLength={6}
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                  />
-                </div>
-
-                <button type="submit" className="btn btn-primary" disabled={loading}>
-                  {loading ? 'Criando conta...' : 'Criar conta'}
-                </button>
-              </form>
-
-              <p className="mt-3 mb-0">
-                Já tem conta? <Link to="/login">Entrar</Link>
-              </p>
+          <form onSubmit={handleSubmit} className="d-grid gap-3">
+            <div>
+              <label htmlFor="email" className="form-label">
+                E-mail
+              </label>
+              <input
+                id="email"
+                type="email"
+                className="form-control"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
             </div>
-          </div>
+
+            <div>
+              <label htmlFor="password" className="form-label">
+                Senha
+              </label>
+              <input
+                id="password"
+                type="password"
+                className="form-control"
+                minLength={6}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={loading}
+            >
+              {loading ? 'Criando conta...' : 'Criar conta'}
+            </button>
+          </form>
+
+          <p className="mt-4 mb-0 text-center text-secondary">
+            Já tem conta? <Link to="/login">Entrar</Link>
+          </p>
         </div>
       </div>
     </main>

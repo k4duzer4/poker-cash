@@ -1,0 +1,449 @@
+/* ============================= */
+/* 🔥 ICX POKER DARK THEME */
+/* ============================= */
+
+:root {
+  --bg-main: #0f1117;
+  --bg-card: #111827;
+  --bg-input: #1a1f2b;
+
+  --primary: #10b981;
+  --primary-hover: #059669;
+
+  --text-main: #ffffff;
+  --text-secondary: #9ca3af;
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================= */
+/* GLOBAL */
+/* ============================= */
+
+body {
+  background: radial-gradient(circle at top, #111827, #0f1117 60%);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* ============================= */
+/* TITLES */
+/* ============================= */
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+}
+
+/* ============================= */
+/* INPUTS */
+/* ============================= */
+
+.form-control {
+  background: var(--bg-input) !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--text-main) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background: var(--bg-input) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.25) !important;
+  color: var(--text-main) !important;
+}
+
+/* Label */
+.form-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ============================= */
+/* BUTTON PRIMARY */
+/* ============================= */
+
+.btn-primary {
+  background: var(--primary) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600;
+  padding: 10px 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* ============================= */
+/* BUTTON OUTLINE */
+/* ============================= */
+
+.btn-outline-secondary {
+  border: 1px solid var(--border-soft) !important;
+  color: var(--text-main) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ============================= */
+/* ALERTS */
+/* ============================= */
+
+.alert {
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.alert-danger {
+  background: rgba(220, 38, 38, 0.15) !important;
+  color: #f87171 !important;
+}
+
+.alert-success {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+/* ============================= */
+/* LINKS */
+/* ============================= */
+
+a {
+  color: var(--primary);
+  transition: 0.2s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* ============================= */
+/* CONTAINER FIX */
+/* ============================= */
+
+main.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================= */
+/* SMOOTH ANIMATION */
+/* ============================= */
+
+* {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ============================= */
+/* CENTRALIZAÇÃO LOGIN */
+/* ============================= */
+
+main.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.card {
+  width: 100%;
+}
+
+/* ============================= */
+/* TITULOS AUTH */
+/* ============================= */
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5 {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.landing {
+  min-height: 100vh;
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.landing-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.landing-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.landing-hero {
+  max-width: 700px;
+  margin-top: 80px;
+}
+
+.landing-hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.landing-hero p {
+  font-size: 18px;
+  color: #9ca3af;
+  margin-bottom: 30px;
+}
+
+.landing-features {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1;
+  min-width: 280px;
+  background: #111827;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.feature-card h3 {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.feature-card p {
+  color: #9ca3af;
+}
+
+.landing-cta {
+  text-align: center;
+  padding: 80px 20px;
+  background: #111827;
+  border-radius: 20px;
+}
+
+.landing-cta h2 {
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.landing-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16,185,129,0.25), transparent 70%);
+  top: -200px;
+  right: -200px;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+.landing {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.badge-free {
+  background: rgba(16,185,129,0.2);
+  color: #10b981;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.landing-how {
+  text-align: center;
+}
+
+.how-grid {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.landing-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-mock {
+  width: 700px;
+  height: 350px;
+  background: #111827;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 20px;
+}
+
+.mock-header {
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.mock-body {
+  height: 220px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+}
+
+.landing-footer {
+  text-align: center;
+  padding: 40px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-45deg, #0f172a, #111827, #064e3b, #0f172a);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(17,24,39,0.6);
+  border-radius: 12px;
+  padding: 20px 40px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  text-align: center;
+}
+
+.stats h2 {
+  font-size: 36px;
+  color: #10b981;
+}
+
+.problem, .solution, .faq {
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+.solution-grid {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonials {
+  text-align: center;
+}
+
+.testimonial-grid {
+  margin-top: 40px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: #111827;
+  padding: 20px;
+  border-radius: 16px;
+  width: 250px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  border-color: #10b981;
+}
+
+.faq-item { 
+  margin-top: 20px;
+}
+
+.landing-cta {
+  text-align: center;
+}
